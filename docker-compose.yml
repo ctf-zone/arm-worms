@@ -1,0 +1,23 @@
+version: "3"
+services:
+  arm-worms:
+    container_name: arm-worms-container
+    build:
+      context: .
+      dockerfile: Dockerfile-game
+    image: arm-worms-image:v1
+    ports:
+      - "5000:5000"
+    environment:
+      LC_ALL: C.UTF-8
+      LANG: C.UTF-8
+    restart: always
+  vis:
+    container_name: vis-container
+    build:
+      context: .
+      dockerfile: Dockerfile-vis
+    image: vis-image:v1
+    ports:
+      - "80:80"
+    restart: always

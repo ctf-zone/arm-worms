@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+
+    <style>
+        .task-list-item {
+            list-style-type: none;
+        }
+
+        .task-list-item-checkbox {
+            margin-left: -20px;
+            vertical-align: middle;
+        }
+    </style>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+    </style>
+
+</head>
+
+<body class="vscode-light">
+    <form action="/test" enctype="multipart/form-data" method="POST">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Select your shellcode</td>
+                    <td><input type="file" class="form-control-file" name="shellcode" /></td>
+                </tr>
+                <tr>
+                    <td>Select your team</td>
+                    <td>
+                        <select name="team_name" class="selectpicker form-control">
+                            {% for o in data %}
+                            <option value="{{ o.name }}">{{ o.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br><button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    {% if error %}
+    <br>
+    <div> {{error}} </div>
+    {% endif %}
+    {% if _id %}
+    <br>
+    <table>
+        <tbody>
+            <tr>
+                <td><a href="/vis/{{_id}}">vizualization</a></td>
+                <td><a href="/json_map/{{_id}}">map</a></td>
+                <td><a href="/json_replay/{{_id}}">replay</a></td>
+            </tr>
+        </tbody>
+    </table>
+    {% endif %}
+</body>
+
+</html>

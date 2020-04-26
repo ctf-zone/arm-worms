@@ -1,0 +1,39 @@
+FROM ubuntu:18.04
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    make \
+    libglib2.0-dev \
+    python3 \
+    python3-pip \
+    cmake
+
+COPY unicorn /app/unicorn
+COPY capstone /app/capstone
+COPY arm-worms /app/arm-worms
+
+WORKDIR /app/unicorn
+
+# build unicorn and install bindings
+RUN ./make.sh && \
+    ./make.sh install && \
+    cd bindings/python && \
+    python3 setup.py install
+
+WORKDIR /app/capstone
+
+# build capstone and install bindings
+RUN ./make.sh && \
+    ./make.sh install && \
+    cd bindings/python && \
+    python3 setup.py install
+
+WORKDIR /app/arm-worms
+
+RUN python3 -m pip install -r requirements.txt && \
+    chmod +x /app/arm-worms/app.py && \
+    chmod +x /app/arm-worms/core.py && \
+    chmod +x /app/arm-worms/db.py && \
+    chmod +x /app/arm-worms/wsgi.py
+
+CMD ["gunicorn", "--timeout", "180", "--workers", "4", "--bind", "0.0.0.0:5000", "wsgi:app"]

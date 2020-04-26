@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+
+    <style>
+        .task-list-item {
+            list-style-type: none;
+        }
+
+        .task-list-item-checkbox {
+            margin-left: -20px;
+            vertical-align: middle;
+        }
+    </style>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+    </style>
+
+</head>
+
+<body class="vscode-light">
+    <form action="/test_all" enctype="multipart/form-data" method="POST">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Shellcode</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>mslc</td>
+                    <td><input type="file" class="form-control-file" name="shellcode0" /></td>
+                </tr>
+                <tr>
+                    <td>mhackeroni</td>
+                    <td><input type="file" class="form-control-file" name="shellcode1" /></td>
+                </tr>
+                <tr>
+                    <td>A*0*E</td>
+                    <td><input type="file" class="form-control-file" name="shellcode2" /></td>
+                </tr>
+                <tr>
+                    <td>perfect blue</td>
+                    <td><input type="file" class="form-control-file" name="shellcode3" /></td>
+                </tr>
+                <tr>
+                    <td>Bushwhackers</td>
+                    <td><input type="file" class="form-control-file" name="shellcode4" /></td>
+                </tr>
+                <tr>
+                    <td>地松鼠.PAS</td>
+                    <td><input type="file" class="form-control-file" name="shellcode5" /></td>
+                </tr>
+                <tr>
+                    <td>Dragon Sector</td>
+                    <td><input type="file" class="form-control-file" name="shellcode6" /></td>
+                </tr>
+                <tr>
+                    <td>Tea Deliverers</td>
+                    <td><input type="file" class="form-control-file" name="shellcode7" /></td>
+                </tr>
+                <tr>
+                    <td>p4</td>
+                    <td><input type="file" class="form-control-file" name="shellcode8" /></td>
+                </tr>
+                <tr>
+                    <td>TSG</td>
+                    <td><input type="file" class="form-control-file" name="shellcode9" /></td>
+                </tr>
+            </tbody>
+        </table>
+        <br><button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    {% if error %}
+    <br>
+    <div> {{error}} </div>
+    {% endif %}
+    {% if _id %}
+    <br>
+    <table>
+        <tbody>
+            <tr>
+                <td><a href="/vis/{{_id}}">vizualization</a></td>
+                <td><a href="/json_map/{{_id}}">map</a></td>
+                <td><a href="/json_replay/{{_id}}">replay</a></td>
+            </tr>
+        </tbody>
+    </table>
+    {% endif %}
+</body>
+
+</html>
