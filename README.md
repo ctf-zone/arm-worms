@@ -26,7 +26,6 @@
     - [x86](#x86-4)
     - [arm](#arm-4)
 - [Rules](#rules)
-- [Visualization](#visualization)
 
 # Intro
 
@@ -41,14 +40,19 @@ The total number of instructions that can be executed on one computer is `2**17`
 
 Installation steps:
 
-* `git clone https://github.com/unicorn-engine/unicorn.git`
-* `git clone https://github.com/aquynh/capstone.git`
-* `docker-compose up --build`
+```bash
+git submodule update --init --recursive
+docker-compose up --build
+```
 
-After installation, check the following URLs:
+After installation, check the following URLs to upload your shellcode:
 
 * `http://0.0.0.0:5000/test`
 * `http://0.0.0.0:5000/test_all`
+
+Visualization is located on port 80:
+
+![vis-example](img/grid.png)
 
 # Map
 
@@ -391,7 +395,3 @@ In order to infect neighbour computer, you must perform the following steps:
 * get new crc16 value with `SYS_GET_CRC16`
 * find the inverse value to the received crc16
 * infect a neighbor using its identifier and `crc16_inv` value with `SYS_INFECT`
-
-# Visualization
-
-To view the result of each round, just follow the link `http://100.100.51.52`.
